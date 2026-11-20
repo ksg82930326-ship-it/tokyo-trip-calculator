@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>도쿄 정산 · 도쿄 여행 경비 정산</title>
+<style>
+:root{--bg:#0a0a18;--card:rgba(255,255,255,.045);--line:rgba(255,255,255,.09);--text:#f1f2fa;--sub:#8b8fa8;--a:#5b8cff;--b:#c26be0;--c:#ff6fa8;--red:#ff6b7a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--text);font-family:-apple-system,"Malgun Gothic","Noto Sans KR",sans-serif;
+ background:radial-gradient(900px 500px at 15% -5%,rgba(110,80,255,.3),transparent 60%),radial-gradient(700px 400px at 90% 10%,rgba(255,90,160,.15),transparent 60%),var(--bg)}
+body::after{content:"東京";position:fixed;right:-30px;top:90px;writing-mode:vertical-rl;font-size:320px;font-weight:700;opacity:.035;pointer-events:none;line-height:1}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:16px;padding:12px 24px;background:rgba(10,10,24,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700}
+.logo small{display:block;font-size:.62rem;letter-spacing:.15em;color:var(--sub);font-weight:400}
+.logo span{font-size:1.6rem}
+nav{display:flex;gap:18px;margin-left:12px}
+nav a{color:var(--sub);text-decoration:none;font-size:.9rem}
+nav a:hover{color:var(--text)}
+.sp{flex:1}
+.pill{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:7px 14px;font-size:.82rem;cursor:pointer}
+button{font:inherit;cursor:pointer}
+.main-btn{border:0;border-radius:12px;padding:10px 18px;color:#fff;font-weight:600;background:linear-gradient(90deg,var(--a),var(--b))}
+.ghost{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:9px 14px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px 60px;position:relative}
+.hero{padding:44px 0 10px}
+.badge{display:inline-block;border:1px solid rgba(91,140,255,.4);color:#7fb0ff;border-radius:999px;padding:5px 14px;font-size:.7rem;letter-spacing:.2em}
+h1{font-size:3.2rem;margin:18px 0 8px;line-height:1.1}
+h1 b{background:linear-gradient(90deg,var(--c),var(--b),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--sub);margin:0 0 26px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.stat::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--c),var(--a))}
+.stat small{color:var(--sub);font-size:.75rem;letter-spacing:.06em}
+.stat strong{display:block;font-size:1.9rem;margin:10px 0 6px}
+.stat em{font-style:normal;color:var(--sub);font-size:.78rem}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 8px}
+.chip{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px 6px 6px;font-size:.9rem}
+.av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:700;color:#10101f}
+.dash{border-style:dashed;color:var(--sub);padding:9px 16px;background:transparent}
+section{margin-top:34px}
+h2{font-size:1.2rem;margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px 18px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row small{display:block;color:var(--sub);margin-top:3px}
+.x{background:none;border:0;color:var(--red);font-size:1rem;padding:4px 8px}
+.empty{color:var(--sub);padding:18px 0;font-size:.92rem}
+.bar{display:flex;align-items:center;gap:10px;padding:9px 0;font-size:.88rem}
+.bar i{width:42px;font-style:normal}
+.bar div{flex:1;height:12px;background:rgba(255,255,255,.07);border-radius:8px;overflow:hidden}
+.bar div b{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b))}
+.bar span{width:150px;text-align:right;color:var(--sub);font-size:.82rem}
+.pay{padding:14px 0;border-bottom:1px solid var(--line);font-size:.98rem}
+.pay:last-child{border-bottom:0}
+dialog{border:1px solid var(--line);border-radius:18px;background:#14142a;color:var(--text);padding:22px;width:min(440px,92vw)}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+dialog h3{margin:0 0 6px}
+label{display:block;font-size:.8rem;color:var(--sub);margin:12px 0 5px}
+input,select{width:100%;padding:10px;font-size:1rem;color:var(--text);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:10px}
+select option{background:#14142a}
+.two{display:flex;gap:10px}.two>div{flex:1}
+.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+.err{color:var(--red);font-size:.84rem;min-height:1.2em;margin-top:10px}
+@media(max-width:720px){nav{display:none}header{padding:10px 14px}.stats{grid-template-columns:1fr 1fr}h1{font-size:2.1rem}.bar span{width:110px}body::after{font-size:200px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><span>⛩</span><div>도쿄 정산<small>TOKYO SPLIT</small></div></div>
+  <nav><a href="#list">지출 내역</a><a href="#stat">통계</a><a href="#settle">정산</a></nav>
+  <div class="sp"></div>
+  <button class="pill" id="ratePill"></button>
+  <button class="main-btn" id="btnNew">＋ 지출 추가</button>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="badge">TOKYO TRIP SETTLEMENT</span>
+    <h1>도쿄 여행 <b>경비 정산</b></h1>
+    <p class="lead">엔화와 원화를 한곳에서. 누가 얼마나 냈는지 한눈에 보고, 깔끔하게 나누세요.</p>
+    <div class="stats">
+      <div class="stat"><small>총 지출 TOTAL</small><strong id="sTotal"></strong><em id="sYen"></em></div>
+      <div class="stat"><small>1인당 부담 SHARE</small><strong id="sShare"></strong><em>더치페이 기준</em></div>
+      <div class="stat"><small>지출 건수 ITEMS</small><strong id="sCount"></strong><em id="sHint"></em></div>
+      <div class="stat"><small>함께한 멤버 CREW</small><strong id="sCrew"></strong><em>평균 분담 인원</em></div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <section id="list"><h2>지출 내역</h2><div class="card" id="listBox"></div></section>
+  <section id="stat"><h2>카테고리별 통계</h2><div class="card" id="statBox"></div></section>
+  <section id="settle"><h2>정산 결과</h2><div class="card" id="settleBox"></div></section>
+</div>
+
+<dialog id="dlgSet">
+  <h3>멤버 · 환율 설정</h3>
+  <label for="names">멤버 이름 (쉼표로 구분, 2명 이상)</label>
+  <input id="names" placeholder="이름1, 이름2, 이름3">
+  <label for="rate">환율 (100엔당 원화)</label>
+  <input id="rate" type="number" inputmode="decimal" placeholder="숫자 입력">
+  <div class="err" id="errSet"></div>
+  <div class="acts">
+    <button class="ghost" id="btnReset">전체 초기화</button>
+    <button class="ghost" id="btnSetCancel">닫기</button>
+    <button class="main-btn" id="btnSetSave">저장</button>
+  </div>
+</dialog>
+
+<dialog id="dlgAdd">
+  <h3>지출 추가</h3>
+  <label for="item">지출 내용</label>
+  <input id="item" placeholder="예: 라멘, 스이카 충전">
+  <div class="two">
+    <div><label for="category">카테고리</label><select id="category"></select></div>
+    <div><label for="payer">결제자</label><select id="payer"></select></div>
+  </div>
+  <div class="two">
+    <div><label for="amount">금액</label><input id="amount" type="number" inputmode="decimal" placeholder="0"></div>
+    <div><label for="currency">통화</label><select id="currency"><option value="JPY">엔(JPY)</option><option value="KRW">원(KRW)</option></select></div>
+  </div>
+  <div class="err" id="errAdd"></div>
+  <div class="acts">
+    <button class="ghost" id="btnAddCancel">취소</button>
+    <button class="main-btn" id="btnAddSave">추가</button>
+  </div>
+</dialog>
+
+<script>
+const CATS = ["항공", "숙소", "식비", "교통", "쇼핑", "기타"];
+const COLORS = ["#4cc9f0", "#ff6fa8", "#ffb020", "#2dd4bf", "#b388ff", "#ff8a65", "#9ccc65", "#7986cb"];
+let state = { members: [], rate: 0, expenses: [] };   // 모든 데이터 (처음에는 비어 있음)
+
+const $ = (id) => document.getElementById(id);
+const won = (n) => Math.round(n).toLocaleString("ko-KR") + "원";
+const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+const toKrw = (amount, currency, rate) => currency === "JPY" ? amount * rate / 100 : amount;   // 1주차 to_krw()
+const colorOf = (name) => COLORS[state.members.indexOf(name) % COLORS.length];
+const sum = (list) => list.reduce((t, e) => t + e.krw, 0);
+
+function openSettings(msg) {
+  $("names").value = state.members.join(", ");
+  $("rate").value = state.rate || "";
+  $("errSet").textContent = msg || "";
+  $("dlgSet").showModal();
+}
+
+function saveSettings() {
+  const names = $("names").value.split(",").map((s) => s.trim()).filter(Boolean);
+  const rate = parseFloat($("rate").value);
+  if (names.length < 2) { $("errSet").textContent = "멤버를 2명 이상 입력해 주세요."; return; }
+  if (state.expenses.some((e) => e.currency === "JPY") && !(rate > 0)) { $("errSet").textContent = "엔화 지출이 있어서 환율이 필요합니다."; return; }
+  state.members = names;
+  state.rate = rate > 0 ? rate : 0;
+  state.expenses = state.expenses.filter((e) => names.includes(e.payer));
+  state.expenses.forEach((e) => { e.krw = toKrw(e.amount, e.currency, state.rate); });
+  $("dlgSet").close(); render();
+}
+
+function openExpense() {
+  if (state.members.length < 2) { openSettings("먼저 멤버를 2명 이상 입력해 주세요."); return; }
+  $("payer").innerHTML = state.members.map((m) => `<option>${esc(m)}</option>`).join("");
+  $("errAdd").textContent = "";
+  $("dlgAdd").showModal();
+}
+
+function addExpense() {   // 1주차 add_expense()
+  const amount = parseFloat($("amount").value);
+  const currency = $("currency").value;
+  if (!(amount > 0)) { $("errAdd").textContent = "금액을 0보다 큰 숫자로 입력해 주세요."; return; }
+  if (currency === "JPY" && !(state.rate > 0)) { $("errAdd").textContent = "엔화 지출은 환율을 먼저 설정해 주세요. (상단 환율 버튼)"; return; }
+  state.expenses.push({ item: $("item").value.trim() || "이름 없음", category: $("category").value,
+    currency, amount, payer: $("payer").value, krw: toKrw(amount, currency, state.rate) });
+  $("item").value = ""; $("amount").value = "";
+  $("dlgAdd").close(); render();
+}
+
+function del(i) { state.expenses.splice(i, 1); render(); }
+
+function resetAll() {
+  if (!confirm("모든 데이터를 지울까요?")) return;
+  state = { members: [], rate: 0, expenses: [] };
+  $("dlgSet").close(); render();
+}
+
+function renderStats() {   // 1주차 show_by_category()
+  const total = sum(state.expenses);
+  if (!total) { $("statBox").innerHTML = '<div class="empty">지출을 입력하면 통계가 표시됩니다.</div>'; return; }
+  $("statBox").innerHTML = CATS.map((c) => {
+    const sub = sum(state.expenses.filter((e) => e.category === c));
+    if (!sub) return "";
+    const p = sub / total * 100;
+    return `<div class="bar"><i>${c}</i><div><b style="width:${p}%"></b></div><span>${won(sub)} (${p.toFixed(1)}%)</span></div>`;
+  }).join("");
+}
+
+function renderSettle() {   // 1주차 settle()
+  const box = $("settleBox");
+  if (!state.expenses.length) { box.innerHTML = '<div class="empty">지출을 입력하면 정산 결과가 표시됩니다.</div>'; return; }
+  const share = sum(state.expenses) / state.members.length;
+  const bal = {};
+  state.members.forEach((m) => { bal[m] = -share; });
+  state.expenses.forEach((e) => { bal[e.payer] += e.krw; });
+  const senders = [], receivers = [];
+  for (const m in bal) { if (bal[m] < -1) senders.push([m, -bal[m]]); else if (bal[m] > 1) receivers.push([m, bal[m]]); }
+  let html = `<div class="pay">1인당 부담액 <b>${won(share)}</b></div>`;
+  if (!senders.length) { box.innerHTML = html + '<div class="pay">모두 같은 금액을 부담했습니다 🎉</div>'; return; }
+  let i = 0, j = 0;
+  while (i < senders.length && j < receivers.length) {
+    const money = Math.min(senders[i][1], receivers[j][1]);
+    html += `<div class="pay">💸 <b>${esc(senders[i][0])}</b> → <b>${esc(receivers[j][0])}</b> : ${won(money)}</div>`;
+    senders[i][1] -= money; receivers[j][1] -= money;
+    if (senders[i][1] < 1) i++;
+    if (receivers[j][1] < 1) j++;
+  }
+  box.innerHTML = html;
+}
+
+function render() {
+  const n = state.expenses.length, total = sum(state.expenses);
+  const yen = state.expenses.filter((e) => e.currency === "JPY").reduce((t, e) => t + e.amount, 0);
+  $("ratePill").textContent = state.rate > 0 ? `● 100엔 = ${state.rate.toLocaleString()}원` : "환율 설정";
+  $("sTotal").textContent = won(total);
+  $("sYen").textContent = yen ? `엔화 지출 ${yen.toLocaleString()}엔` : "엔화 지출 없음";
+  $("sShare").textContent = state.members.length ? won(total / state.members.length) : "0원";
+  $("sCount").textContent = n + "건";
+  $("sHint").textContent = n ? "기록된 지출" : "첫 지출을 기다리는 중";
+  $("sCrew").textContent = state.members.length + "명";
+  $("chips").innerHTML = state.members.map((m) =>
+    `<div class="chip"><span class="av" style="background:${colorOf(m)}">${esc(m.charAt(0))}</span>${esc(m)}</div>`).join("")
+    + `<button class="chip dash" id="btnMembers">＋ 멤버 관리</button>`;
+  $("btnMembers").onclick = () => openSettings();
+  $("listBox").innerHTML = n ? state.expenses.map((e, i) =>
+    `<div class="row"><div>${esc(e.item)}<small>${e.category} · ${esc(e.payer)} 결제 · ${e.amount.toLocaleString()}${e.currency === "JPY" ? "엔" : "원"}</small></div>
+     <div>${won(e.krw)} <button class="x" onclick="del(${i})" aria-label="삭제">✕</button></div></div>`).join("")
+    : '<div class="empty">아직 입력된 지출이 없습니다. 오른쪽 위의 “지출 추가”를 눌러 보세요.</div>';
+  renderStats(); renderSettle();
+}
+
+$("category").innerHTML = CATS.map((c) => `<option>${c}</option>`).join("");
+$("btnNew").onclick = openExpense;
+$("ratePill").onclick = () => openSettings();
+$("btnSetSave").onclick = saveSettings;
+$("btnSetCancel").onclick = () => $("dlgSet").close();
+$("btnReset").onclick = resetAll;
+$("btnAddSave").onclick = addExpense;
+$("btnAddCancel").onclick = () => $("dlgAdd").close();
+render();
+</script>
+</body>
+</html>
